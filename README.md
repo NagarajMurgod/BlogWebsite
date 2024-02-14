@@ -1,1 +1,1 @@
-![BLOG website ER MODEL](images/blog_model.png)
+![BLOG website ER MODEL!](./images/blog_model.png)
