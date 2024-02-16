@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateResponseMixin
 from django.views import View
 from django.contrib.auth.views import LoginView, LogoutView
+
 from authentication.forms import RegistrationForm
 from django.contrib.auth import get_user_model
 
@@ -31,3 +32,7 @@ class RegisterUserView(View, TemplateResponseMixin):
 
 class UserLoginView(LoginView):
     template_name = 'login.html'
+
+
+class UserLogoutView(LogoutView):
+    pass
