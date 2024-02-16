@@ -16,3 +16,13 @@ class Profile(BaseModel):
         return f"{self.name}_{self.id}_profile"
     
 
+class Follows(BaseModel):
+    follower = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='followee')
+    followee = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='follower')
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                ['follower_id', 'followee_id'], name='follower_followee'
+            )
+        ]
