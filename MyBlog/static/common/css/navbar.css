@@ -1,0 +1,85 @@
+
+.main-nav-bar{
+    border: 1px solid red;
+    position: relative;
+    padding: 1.5rem 10%;
+
+}
+
+
+/* ####################### Logo styling #################### */
+
+.logo{
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red;/ */
+}
+
+.logo img{
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.logo h2{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+
+/* ######################## nav item styling #################3 */
+
+
+
+.nav-items-wrapper{
+
+    display: flex;
+    align-items: center;
+}
+
+.main-nav-bar .nav-wrapper{
+    display: flex;
+
+}
+
+.nav-items li{
+    list-style: none;
+    margin : 0 2rem;
+    
+}
+
+.nav-items{
+    position: relative;
+    display: flex;
+    /* border: 1px solid red; */
+    align-items: center;
+    margin: auto;
+}
+.category-items{
+    display: none;
+    /* border: 1px solid red; */
+    position: absolute;
+    z-index: 999;
+}
+
+.nav-items a{
+    text-decoration: none;
+    color: black;
+}
+.nav-items{
+    display: flex;
+}
+
+.fa-caret-down{
+
+    font-size: 1.2rem !important;
+    margin-left: 0.5rem;
+}
+
+#category-btn{
+    background: none;
+    border: none;
+}
+
+
+

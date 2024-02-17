@@ -1,4 +1,4 @@
 .env
 migrations
-*/__pycache__
+/MyBlog/*/__pycache__
 .gitignore
