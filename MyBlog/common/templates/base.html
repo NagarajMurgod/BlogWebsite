@@ -18,12 +18,14 @@
 </head>
 
 <body>
-    <nav class="main-nav-bar shadow-sm">
+    <nav class="main-nav-bar ">
         <div class="nav-content-wrapper">
             <div class="nav-wrapper">
                 <div class="logo">
                     <img src="{% static 'blog_logo.png' %}" alt="">
+
                     <h2>BLOGOSPHARE</h2>
+
                 </div>
 
                 <div class="nav-items-wrapper">
@@ -49,7 +51,8 @@
             <div class="nav-bar-search">
                 <form action="#" class="search">
                     <input type="search" placeholder="search blog">
-                    <button style="margin-left: 5px;" class="btn btn-dark"><i class="fa fa-search" aria-hidden="true"></i>
+                    <button style="margin-left: 5px;" class="btn btn-dark"><i class="fa fa-search"
+                            aria-hidden="true"></i>
                     </button>
                 </form>
                 <form action="">
@@ -62,6 +65,16 @@
             </div>
         </div>
     </nav>
+    <section class="shadow-sm" style="background-color: white;">
+        <div class="slogan">
+            <div class="slogan-logo" style="display: flex;">
+                <img src="{% static 'blog_logo.png' %}" alt="">
+                <!-- <h1>BLOGOSPHARE</h1> -->
+            </div>
+            <h2>Dive into the Depths of Knowledge</h2>
+            <button class="btn btn-dark fw-bold">Share you thoughts</button>
+        </div>
+    </section>
 </body>
 <script src="{% static '/common/js/navbar.js' %}"></script>
 
