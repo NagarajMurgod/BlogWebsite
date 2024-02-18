@@ -6,6 +6,7 @@ body{
     /* border: 1px solid red; */
     position: relative;
     padding: 1.4rem 10%;
+
     
   
 }
@@ -15,6 +16,7 @@ body{
     display: flex;
     justify-content: space-between;
     /* border: 1px solid red; */
+    
 }
 
 /* ####################### Logo styling #################### */
@@ -37,7 +39,7 @@ body{
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 0;
-    color: white;
+    color: rgb(255, 255, 255);
    
    
 }
@@ -85,7 +87,7 @@ body{
 
 .nav-items a {
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .nav-items {
@@ -101,7 +103,7 @@ body{
 #category-btn {
     background: none;
     border: none;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 
@@ -133,10 +135,16 @@ body{
 
 /* ######################### slogan section ##################3 */
 
+
+
 .slogan-logo img{
-    height: 5rem;
-    width: 5rem;
+    height: 5.5rem;
+    width: 5.5rem;
     /* background-color: red; */
+}
+
+.slogan h2{
+    font-weight: bold;
 }
 
 .slogan{
@@ -146,5 +154,36 @@ body{
     align-items: center;
     padding: 3rem;
     gap: 1rem;
+    background: transparent;
+    height: 70vh;
+    justify-content: center;
+    z-index: 10;
+    position: relative;
+    
 
+}
+
+
+.slogan-section{
+    position: relative;
+    color: white;
+}
+
+.blog-background-img{
+    position: absolute;
+    /* border:10px solid rgb(255, 0, 0); */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: rgba(0, 0, 0, 0.384);
+}
+
+.blog-background-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* border: 3px solid rgb(3, 255, 3); */
+    position: relative;
+    z-index: -4;
+    /* display:none; */
 }
