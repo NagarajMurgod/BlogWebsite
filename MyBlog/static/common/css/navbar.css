@@ -223,7 +223,7 @@ body{
 }
 .all_blog_container .blog_img{
 
-    border: 1px solid red;
+    border: 1px solid rgb(255, 0, 0);
     width: 30rem;
     height: 10rem;
     flex-basis: 30%;
