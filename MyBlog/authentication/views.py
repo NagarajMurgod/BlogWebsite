@@ -1,38 +1,18 @@
-from django.shortcuts import render, redirect
-from django.views.generic.base import TemplateResponseMixin
-from django.views import View
-from django.contrib.auth.views import LoginView, LogoutView
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import CreateUserSerializer
 
-from authentication.forms import RegistrationForm
-from django.contrib.auth import get_user_model
-
-
-User = get_user_model()
-
-class RegisterUserView(View, TemplateResponseMixin):
-
-    Reg_form = RegistrationForm
-    template_name = "signup.html"
-
-    def get(self, request, *args, **kwargs):
-        return self.render_to_response({'form' : self.Reg_form()})
-
-    
-    def post(self, request,*args,**kwargs):
-        user_email = request.POST.get('email')
-
-        form = self.Reg_form(request.POST)
-
-        if form.is_valid() is False:
-            return render_to_response({'form': form})
-
-        user = form.save()
-        return redirect(reverse('login'))
+class SignupView(APIView):
 
 
-class UserLoginView(LoginView):
-    template_name = 'login.html'
+    def post(self,request, *args, **kwargs):
+        serialize = CreateUserSerializer(data=request.data)
 
+        if serialize.is_valid():
+            user = serialize.create(serialize.validated_data)
 
-class UserLogoutView(LogoutView):
-    pass
+            return Response(serialize.data,status=status.HTTP_201_CREATED)
+        
+        return Response(serialize.error, status=status.HTTP_400_BAD_REQUEST)
+            

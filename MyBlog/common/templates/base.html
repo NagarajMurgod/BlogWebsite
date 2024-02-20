@@ -13,7 +13,9 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static '/common/css/navbar.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500&family=Poppins:wght@100;200;300;400;500;600;700&family=Protest+Revolution&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500&family=Poppins:wght@100;200;300;400;500;600;700&family=Protest+Revolution&display=swap"
+        rel="stylesheet">
 
 
 </head>
@@ -28,7 +30,7 @@
                     <h2>BLOGOSPHARE</h2>
 
                 </div>
-
+                {% if request.user.is_authenticated %}
                 <div class="nav-items-wrapper">
                     <ul class="nav-items">
                         <li><a href="#">HOME</a></li>
@@ -47,15 +49,18 @@
                         </li>
                     </ul>
                 </div>
+                {% endif %}
             </div>
 
             <div class="nav-bar-search">
+                {% if request.user.is_authenticated %}
                 <form action="#" class="search">
                     <input type="search" placeholder="search blog" class="search-bar bg-dark">
                     <button style="margin-left: 5px;" class="btn btn-dark"><i class="fa fa-search"
                             aria-hidden="true"></i>
                     </button>
                 </form>
+                {% endif %}
                 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">Login</button>
 
@@ -69,47 +74,10 @@
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content d-flex flex-row">
-                    <div class="login-wrapper w-50">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5 fw-bold mt-3" id="exampleModalLabel">Log In</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-4">
-                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                    <input type="email" class="form-control border-secondary-subtle" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp">
-                                    <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
-                                    </div> -->
-                                </div>
-                                <div class="mb-5">
-                                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" class="form-control border-secondary-subtle" id="exampleInputPassword1">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Login</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="login-img w-50 position-relative">
-                        <img class="w-100 h-100 rounded-end" src="{% static 'blog_background3.jpg' %}" alt="">
-                        <h2 class="position-absolute top-0 text-center font-cursive fw-bold mt-3" style="color: #e48e0eec; font-family: 'Protest Revolution', sans-serif;">Wellcome back to Blogosphare</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="exampleModalRegister" tabindex="-1" aria-labelledby="exampleModalLabelRegister" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content d-flex">
+                <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5 fw-bold mt-3" id="exampleModalLabelRegister">Register</h1>
+                        <h2 class="modal-title fw-bold mt-3" id="exampleModalLabel">Log In</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -121,13 +89,51 @@
                                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                                 </div> -->
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control border-secondary-subtle" id="exampleInputPassword1">
+                                <input type="password" class="form-control border-secondary-subtle"
+                                    id="exampleInputPassword1">
+                            </div>
+                            <button type="button" class="btn btn-primary w-100">Login</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <p class="text-center w-100">dont have account ? <span><button style="padding: 0;color: rgb(34, 128, 250);" class="btn mb-1"
+                                    data-bs-target="#exampleModalRegister" data-bs-toggle="modal">Register
+                                    here</button></span></p>
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Dont have account?</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="exampleModalRegister" tabindex="-1" aria-labelledby="exampleModalLabelRegister"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content d-flex">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 fw-bold mt-3" id="exampleModalLabelRegister">Register</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/">
+                            <div class="mb-4">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input type="email" class="form-control border-secondary-subtle" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                </div> -->
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword2" class="form-label">Password2</label>
-                                <input type="password" class="form-control border-secondary-subtle" id="exampleInputPassword2">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" class="form-control border-secondary-subtle"
+                                    id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control border-secondary-subtle"
+                                    id="exampleInputPassword2">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -152,12 +158,18 @@
             </div>
             <h1 class="fw-bold">Dive into the Depths of Knowledge</h1>
             <h5>Create a unique and beautiful blog easily.</h5>
+            {% if request.user.is_authenticated %}
             <button class="btn btn-success fw-bold">Share you thoughts</button>
+            {% else %}
+            <button class="btn btn-success fw-bold" type="button" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Share you thoughts</button>
+            {% endif %}
+
         </div>
     </section>
 
     <section class="recent_blog py-5">
-        <h1 class="mb-5 fw-bold text-center">Recent Blogs</h1>
+        <h2 class="mb-5 fw-bold text-center">Trending Blogs on Blogosphare</h2>
         <div class="recent_blog_wrapper cards gap-2">
 
             <div class="card">
@@ -265,7 +277,10 @@
             </div>
         </div>
     </section>
-</body>
-<script src="{% static '/common/js/navbar.js' %}"></script>
 
+</body>
+<script src="{% static '/common/js/navbar.js' %}">
+
+    
+</script>
 </html>

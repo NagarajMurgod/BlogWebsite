@@ -1,4 +1,6 @@
 
+
+
 var cbtn = document.getElementById('category-btn');
 var cat_itms = document.querySelector('.category-items')
 console.log(cat_itms)
@@ -13,3 +15,6 @@ cbtn.addEventListener('click', function(){
     }
     console.log('wroking');
 })
+
+
+
