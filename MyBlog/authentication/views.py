@@ -4,10 +4,12 @@ from rest_framework import status
 from .serializers import CreateUserSerializer, UserLoginSerializer
 from django.contrib.auth import authenticate, login
 
+
 class SignupView(APIView):
 
 
     def post(self,request, *args, **kwargs):
+        print(request.data)
         serialize = CreateUserSerializer(data=request.data)
         print(serialize.is_valid())
         if serialize.is_valid():
@@ -39,4 +41,4 @@ class SigninView(APIView):
             #         'is_authenticated' : True,
             #     }, status=status.HTTP_200_OK)
         
-   
+

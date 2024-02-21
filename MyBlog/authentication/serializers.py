@@ -46,7 +46,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         return  value.lower()
 
     def create(self, validated_data):
-        user = User.objects.create(email = validated_data['email'],password=validated_data['password'])
+        user = User.objects.create_user( username=validated_data['email'], email = validated_data['email'],password=validated_data['password'])
         user.save()
         return user
     
@@ -61,9 +61,12 @@ class UserLoginSerializer(serializers.Serializer):
     def validate(self, attrs):
         email = attrs.get('email')
         password = attrs.get('password')
+        print(email, password)
 
         if email and password:
-            user = authenticate(self.context.get('request'), email=email, password=password)
+        
+            user = authenticate(request=self.context.get('request'), email=email.lower(), password=password)
+            print(user)
             if user is None:
                 raise serializers.ValidationError('Wrong username and password')
             attrs['user'] = user

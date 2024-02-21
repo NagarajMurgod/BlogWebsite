@@ -66,6 +66,11 @@
 
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                     data-bs-target="#exampleModalRegister">Sign Up</button>
+
+                <form method="POST" action="auth/logout/">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Log out</button>
+                </form>
             </div>
         </div>
 
@@ -81,24 +86,24 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="login-form">
                             <div class="mb-4">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control border-secondary-subtle" id="exampleInputEmail1"
+                                <input type="email" name="email" class="form-control border-secondary-subtle" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                                 </div> -->
                             </div>
                             <div class="mb-5">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control border-secondary-subtle"
+                                <input type="password" name="password" class="form-control border-secondary-subtle"
                                     id="exampleInputPassword1">
                             </div>
-                            <button type="button" class="btn btn-primary w-100">Login</button>
+                            <button type="button" id="login-btn" class="btn btn-primary w-100">Login</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <p class="text-center w-100">dont have account ? <span><button style="padding: 0;color: rgb(34, 128, 250);" class="btn mb-1"
+                        <p class="text-center w-100">dont have account ? <span><button  style="padding: 0;color: rgb(34, 128, 250);" class="btn mb-1"
                                     data-bs-target="#exampleModalRegister" data-bs-toggle="modal">Register
                                     here</button></span></p>
                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Dont have account?</button> -->
@@ -117,27 +122,28 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/">
+                        <form method="POST" id="signup-form" action="/">
+                            {% csrf_token %}
                             <div class="mb-4">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control border-secondary-subtle" id="exampleInputEmail1"
+                                <input type="email" name="email" class="form-control border-secondary-subtle" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                                 </div> -->
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control border-secondary-subtle"
+                                <input type="password" name="password" class="form-control border-secondary-subtle"
                                     id="exampleInputPassword1">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control border-secondary-subtle"
+                                <input type="password" name="confirm_password" class="form-control border-secondary-subtle"
                                     id="exampleInputPassword2">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-danger">Sign up</button>
+                                <button type="button" id="signup" class="btn btn-danger">Sign up</button>
                             </div>
                         </form>
                     </div>
@@ -281,6 +287,5 @@
 </body>
 <script src="{% static '/common/js/navbar.js' %}">
 
-    
 </script>
 </html>
