@@ -27,7 +27,7 @@ class Blog(BaseModel):
 
 
     def __str__(self):
-        return f"{slug}"
+        return f"{self.slug}"
 
 
 class CategoryBlog(BaseModel):

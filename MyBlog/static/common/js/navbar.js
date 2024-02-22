@@ -63,7 +63,12 @@ function login(){
         body : new FormData(document.getElementById('login-form'))
     })
     .then((response)=>{
-        return response.json()
+        if(response.ok){
+            window.location.href = '/';
+        }
+        else{
+            return response.json()
+        }
     })
     .then((data)=>{
 
@@ -94,4 +99,5 @@ function clearLoginFormData(){
     document.getElementById('login-form').reset();
     document.getElementById('login_non_field_error').innerHTML = "";
     document.getElementById('loginEmailError').innerHTML = "";
+    document.getElementById('passwordError').innerHTML = "";
 }
