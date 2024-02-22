@@ -1,3 +1,138 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
+
+{% block body %}
+<section class=" slogan-section">
+    <div class="blog-background-img">
+        <img src="{% static 'blog-background5.jpeg' %}" alt="">
+    </div>
+    <div class="slogan">
+        <div class="slogan-logo" style="display: flex;">
+            <img src="{% static 'blog_logo.svg' %}" alt="">
+            <!-- <h1>BLOGOSPHARE</h1> -->
+        </div>
+        <h1 class="fw-bold">Dive into the Depths of Knowledge</h1>
+        <h5>Create a unique and beautiful blog easily.</h5>
+        {% if request.user.is_authenticated %}
+        <button class="btn btn-success fw-bold">Share you thoughts</button>
+        {% else %}
+        <button class="btn btn-success fw-bold" type="button" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Share you thoughts</button>
+        {% endif %}
+
+    </div>
+</section>
+
+<section class="recent_blog py-5">
+    <h2 class="mb-5 fw-bold text-center">Trending Blogs on Blogosphare</h2>
+    <div class="recent_blog_wrapper cards gap-2">
+
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+
+        </div>
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+
+        </div>
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+
+        </div>
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+        </div>
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+        </div>
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+        </div>
+    </div>
+</section>
+
+<section class="all_blog_container my-5">
+    <div class="blog-cat-wrapper">
+        <div class="all_blog_wrapper">
+            <div class="blog_card px-5 my-5">
+                <div class="blog_content">
+                    <h3 class="fw-bold">title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero
+                        esse totam
+                        nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex!
+                        Eius,
+                        obcaecati rerum.</p>
+                </div>
+                <div class="blog_img">
+                    <img src="{% static 'blog_background.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="blog_card px-5 my-5">
+                <div class="blog_content">
+                    <h3 class="fw-bold">title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero
+                        esse totam
+                        nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex!
+                        Eius,
+                        obcaecati rerum.</p>
+                </div>
+                <div class="blog_img">
+                    <img src="{% static 'blog_background.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="blog_card px-5 my-5">
+                <div class="blog_content">
+                    <h3 class="fw-bold">title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero
+                        esse totam
+                        nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex!
+                        Eius,
+                        obcaecati rerum.</p>
+                </div>
+                <div class="blog_img">
+                    <img src="{% static 'blog_background.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="blog_card px-5 my-5">
+                <div class="blog_content">
+                    <h3 class="fw-bold">title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero
+                        esse totam
+                        nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex!
+                        Eius,
+                        obcaecati rerum.</p>
+                </div>
+                <div class="blog_img">
+                    <img src="{% static 'blog_background.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="cat_card">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error inventore voluptates nam! Ipsa nulla
+            aut, natus quaerat, eum delectus dolor ipsam quae dicta aspernatur illum eaque omnis laborum quam
+            molestiae.
+        </div>
+    </div>
+</section>
+
+{% endblock %}

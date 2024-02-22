@@ -30,7 +30,6 @@
                     <h2>BLOGOSPHARE</h2>
 
                 </div>
-                {% if request.user.is_authenticated %}
                 <div class="nav-items-wrapper">
                     <ul class="nav-items">
                         <li><a href="#">HOME</a></li>
@@ -49,28 +48,31 @@
                         </li>
                     </ul>
                 </div>
-                {% endif %}
             </div>
 
             <div class="nav-bar-search">
-                {% if request.user.is_authenticated %}
+                
                 <form action="#" class="search">
                     <input type="search" placeholder="search blog" class="search-bar bg-dark">
                     <button style="margin-left: 5px;" class="btn btn-dark"><i class="fa fa-search"
                             aria-hidden="true"></i>
                     </button>
                 </form>
-                {% endif %}
+                {% if not request.user.is_authenticated %}
                 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">Login</button>
+                    data-bs-target="#exampleModal" onclick="clearLoginFormData()">Login</button>
 
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                    data-bs-target="#exampleModalRegister">Sign Up</button>
-
+                    data-bs-target="#exampleModalRegister" onclick="clearSignupFormData()">Sign Up</button>
+                
+                {% endif %}
+                
+                {% if request.user.is_authenticated %}
                 <form method="POST" action="auth/logout/">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger">Log out</button>
                 </form>
+                {% endif %}
             </div>
         </div>
 
@@ -86,24 +88,27 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <div id="login_non_field_error" class="form-text text-center" style="color: red;"></div>
                         <form id="login-form">
                             <div class="mb-4">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" name="email" class="form-control border-secondary-subtle" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
-                                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
-                                </div> -->
+                                <input type="email" name="email" class="form-control border-secondary-subtle"
+                                    id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <div id="loginEmailError" class="form-text" style="color: red;padding-left: 5px;"></div>
+                              
                             </div>
                             <div class="mb-5">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
                                 <input type="password" name="password" class="form-control border-secondary-subtle"
                                     id="exampleInputPassword1">
+                                <div id="passwordError" class="form-text" style="color: red;padding-left: 5px;"></div>
                             </div>
-                            <button type="button" id="login-btn" class="btn btn-primary w-100">Login</button>
+                            <button type="button" class="btn btn-primary w-100 fw-bold" onclick="login()" id="login-btn">Login</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <p class="text-center w-100">dont have account ? <span><button  style="padding: 0;color: rgb(34, 128, 250);" class="btn mb-1"
+                        <p class="text-center w-100">dont have account ? <span><button
+                                    style="padding: 0;color: rgb(34, 128, 250);" class="btn mb-1"
                                     data-bs-target="#exampleModalRegister" data-bs-toggle="modal">Register
                                     here</button></span></p>
                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Dont have account?</button> -->
@@ -122,14 +127,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <div id="register_non_field_error" class="form-text text-center" style="color: red;"></div>
                         <form method="POST" id="signup-form" action="/">
                             {% csrf_token %}
                             <div class="mb-4">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" name="email" class="form-control border-secondary-subtle" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
-                                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
-                                </div> -->
+                                <input type="email" name="email" class="form-control border-secondary-subtle"
+                                    id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <div id="emailHelp" class="form-text" style="color: red;padding-left: 5px;"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -138,12 +143,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
-                                <input type="password" name="confirm_password" class="form-control border-secondary-subtle"
-                                    id="exampleInputPassword2">
+                                <input type="password" name="confirm_password"
+                                    class="form-control border-secondary-subtle" id="exampleInputPassword2">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" id="signup" class="btn btn-danger">Sign up</button>
+                                <button type="button" class="btn btn-danger" onclick="signup()">Sign up</button>
                             </div>
                         </form>
                     </div>
@@ -152,140 +157,13 @@
         </div>
     </nav>
 
+    {% block body %}
 
-    <section class=" slogan-section">
-        <div class="blog-background-img">
-            <img src="{% static 'blog-background5.jpeg' %}" alt="">
-        </div>
-        <div class="slogan">
-            <div class="slogan-logo" style="display: flex;">
-                <img src="{% static 'blog_logo.svg' %}" alt="">
-                <!-- <h1>BLOGOSPHARE</h1> -->
-            </div>
-            <h1 class="fw-bold">Dive into the Depths of Knowledge</h1>
-            <h5>Create a unique and beautiful blog easily.</h5>
-            {% if request.user.is_authenticated %}
-            <button class="btn btn-success fw-bold">Share you thoughts</button>
-            {% else %}
-            <button class="btn btn-success fw-bold" type="button" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">Share you thoughts</button>
-            {% endif %}
-
-        </div>
-    </section>
-
-    <section class="recent_blog py-5">
-        <h2 class="mb-5 fw-bold text-center">Trending Blogs on Blogosphare</h2>
-        <div class="recent_blog_wrapper cards gap-2">
-
-            <div class="card">
-                <h3 class="fw-bold">title</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                    nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                    obcaecati rerum.</p>
-
-            </div>
-            <div class="card">
-                <h3 class="fw-bold">title</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                    nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                    obcaecati rerum.</p>
-
-            </div>
-            <div class="card">
-                <h3 class="fw-bold">title</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                    nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                    obcaecati rerum.</p>
-
-            </div>
-            <div class="card">
-                <h3 class="fw-bold">title</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                    nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                    obcaecati rerum.</p>
-            </div>
-            <div class="card">
-                <h3 class="fw-bold">title</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                    nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                    obcaecati rerum.</p>
-            </div>
-            <div class="card">
-                <h3 class="fw-bold">title</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                    nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                    obcaecati rerum.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="all_blog_container my-5">
-        <div class="blog-cat-wrapper">
-            <div class="all_blog_wrapper">
-                <div class="blog_card px-5 my-5">
-                    <div class="blog_content">
-                        <h3 class="fw-bold">title</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero
-                            esse totam
-                            nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex!
-                            Eius,
-                            obcaecati rerum.</p>
-                    </div>
-                    <div class="blog_img">
-                        <img src="{% static 'blog_background.jpg' %}" alt="">
-                    </div>
-                </div>
-                <div class="blog_card px-5 my-5">
-                    <div class="blog_content">
-                        <h3 class="fw-bold">title</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero
-                            esse totam
-                            nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex!
-                            Eius,
-                            obcaecati rerum.</p>
-                    </div>
-                    <div class="blog_img">
-                        <img src="{% static 'blog_background.jpg' %}" alt="">
-                    </div>
-                </div>
-                <div class="blog_card px-5 my-5">
-                    <div class="blog_content">
-                        <h3 class="fw-bold">title</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero
-                            esse totam
-                            nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex!
-                            Eius,
-                            obcaecati rerum.</p>
-                    </div>
-                    <div class="blog_img">
-                        <img src="{% static 'blog_background.jpg' %}" alt="">
-                    </div>
-                </div>
-                <div class="blog_card px-5 my-5">
-                    <div class="blog_content">
-                        <h3 class="fw-bold">title</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero
-                            esse totam
-                            nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex!
-                            Eius,
-                            obcaecati rerum.</p>
-                    </div>
-                    <div class="blog_img">
-                        <img src="{% static 'blog_background.jpg' %}" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="cat_card">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error inventore voluptates nam! Ipsa nulla
-                aut, natus quaerat, eum delectus dolor ipsam quae dicta aspernatur illum eaque omnis laborum quam
-                molestiae.
-            </div>
-        </div>
-    </section>
+    {% endblock %}
 
 </body>
 <script src="{% static '/common/js/navbar.js' %}">
 
 </script>
+
 </html>

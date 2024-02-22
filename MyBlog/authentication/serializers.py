@@ -1,7 +1,7 @@
 
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers
-from django.core.validators import EmailValidator
+from django.core.validators import EmailValidator,validate_email
 from django.contrib.auth.password_validation import validate_password
 
 
@@ -58,13 +58,12 @@ class UserLoginSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True)
 
 
+
     def validate(self, attrs):
         email = attrs.get('email')
         password = attrs.get('password')
         print(email, password)
-
         if email and password:
-        
             user = authenticate(request=self.context.get('request'), email=email.lower(), password=password)
             print(user)
             if user is None:
@@ -79,6 +78,7 @@ class UserLoginSerializer(serializers.Serializer):
 
     
     def validate_email(self,value):
+        validate_email(value)
         return value.lower()
 
         
