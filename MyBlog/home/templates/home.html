@@ -16,7 +16,9 @@
         <h1 class="fw-bold">Dive into the Depths of Knowledge</h1>
         <h5>Create a unique and beautiful blog easily.</h5>
         {% if request.user.is_authenticated %}
-        <button class="btn btn-success fw-bold">Share you thoughts</button>
+        <form action="{% url 'addblog' %}">
+            <button class="btn btn-success fw-bold">Share you thoughts</button>
+        </form>
         {% else %}
         <button class="btn btn-success fw-bold" type="button" data-bs-toggle="modal"
             data-bs-target="#exampleModal">Share you thoughts</button>
