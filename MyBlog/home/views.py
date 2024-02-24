@@ -7,8 +7,6 @@ from blog.models import Blog
 class Homeview(ListView):
 
     template_name = 'home.html'
-
-
     
     def get_queryset(self):
         blogs = Blog.objects.all()
