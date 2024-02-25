@@ -101,3 +101,21 @@ function clearLoginFormData(){
     document.getElementById('loginEmailError').innerHTML = "";
     document.getElementById('passwordError').innerHTML = "";
 }
+
+
+
+function get_profile_image() {
+    console.log('profile fetched');
+
+    fetch('http://127.0.0.1:8000/user/api/profiledata/')
+    .then((response)=>{
+        return response.json()
+    })
+    .then((data)=>{
+        console.log(data);
+        document.getElementById('profile_image').src = data.profile_img;
+    })
+
+}
+
+get_profile_image()
