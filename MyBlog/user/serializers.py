@@ -8,6 +8,5 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = [
             'name',
-            'bio',
-            'profile_img'
+            'profile_img',
         ]

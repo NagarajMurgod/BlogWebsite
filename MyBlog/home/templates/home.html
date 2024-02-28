@@ -76,22 +76,6 @@
 <section class="all_blog_container my-5">
     <div class="blog-cat-wrapper">
         <div class="all_blog_wrapper">
-            {% for blog in object_list %}
-            <div class="blog_card px-5 mt-5">
-                <div class="blog_content">
-                    <h3 class="fw-bold">{{blog.title}}</h3>
-                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero
-                        esse totam
-                        nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex!
-                        Eius,
-                        obcaecati rerum.</p> -->
-                    <p>{{blog.content|truncatewords:40|safe}}</p>
-                </div>
-                <div class="blog_img">
-                    <img src="media/{{blog.blog_image}}" alt="">
-                </div>
-            </div>
-            {% endfor %}
         </div>
         <div class="cat_card">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error inventore voluptates nam! Ipsa nulla

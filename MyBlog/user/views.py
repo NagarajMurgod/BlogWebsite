@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.generics import RetrieveAPIView
 from .serializers import ProfileSerializer
 from .models import Profile
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 User = get_user_model()
@@ -18,16 +19,25 @@ class ProfileApiView(RetrieveAPIView):
         return profile
 
 
-class ProfileView(ListView):
+
+
+class ProfileView(LoginRequiredMixin,ListView):
+    template_name = 'userprofile.html'
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        user = Profile.objects.filter(user_id = self.request.user.id).first()
+        context['profile_data'] = user
+    
+        return context
+
 
     def get_queryset(self):
-
         blogs = Blog.objects.filter(profile__user_id=self.request.user.id)
-        print(blogs)
         return blogs
 
 
-    template_name = 'userprofile.html'
+  
 
 
 

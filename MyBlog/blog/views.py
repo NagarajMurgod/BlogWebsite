@@ -5,6 +5,9 @@ from .models import Blog
 from django.contrib.auth.mixins import LoginRequiredMixin
 from user.models import Profile
 from django.contrib import messages
+from rest_framework.generics import ListAPIView
+from .serializers import BlogSerializer
+
 
 class CreateBlog(LoginRequiredMixin, CreateView):
     form_class = BlogForm
@@ -33,6 +36,13 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         instance.save()
 
         return super().form_valid(form)
+
+    
+class GetAllBlogsApiView(ListAPIView):
+    
+    queryset = Blog.objects.all().order_by('-created_at')
+    serializer_class = BlogSerializer
+    
 
 
     

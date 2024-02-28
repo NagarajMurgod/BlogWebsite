@@ -46,18 +46,16 @@
             </div>
         </div>
         <div class="use_detail ps-4">
-            <div class="">
+            <div>
                 <div class="user_dp_name_followers">
                     <img style="width: 7rem;height: 7rem; border-radius: 50rem;object-fit: cover;"
-                        src="{% static 'blog_background2.jpg' %}" alt="">
-                    <h3 class="pt-3 ps-1">Nagaraj</h3>
+                        src="http://127.0.0.1:8000/media/{{profile_data.profile_img}}" alt="">
+                    <h3 class="pt-3 ps-1">{{profile_data.name}}</h3>
                     <p class="ps-1"> 25 followers</p>
                 </div>
 
                 <div class="ps-1 pe-4">
-                    <p class="user_bio" style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque harum, voluptates
-                        officiis
-                        adipisci laudantium totam autem dicta assumenda, quam ape
+                    <p class="user_bio" style="text-align: justify;">{{profile_data.bio}}
                     </p>
                     <div>
                         <button class="btn btn-dark">Follow</button>

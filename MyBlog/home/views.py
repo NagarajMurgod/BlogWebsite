@@ -4,18 +4,11 @@ from django.views.generic import TemplateView,ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from blog.models import Blog
 
-class Homeview(ListView):
+class Homeview(TemplateView):
 
     template_name = 'home.html'
-    
-    def get_queryset(self):
-        blogs = Blog.objects.all()
-        return blogs
 
-    
 
-    # def get(self, request, *args, **kwargs):
-    #     blogs = Blog.objects.all()
 
 
 
