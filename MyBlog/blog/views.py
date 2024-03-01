@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import CreateView
 from .forms import BlogForm
-from .models import Blog
+from .models import Blog,Categories
 from django.contrib.auth.mixins import LoginRequiredMixin
 from user.models import Profile
 from django.contrib import messages
@@ -21,6 +21,7 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         instance.profile = Profile.objects.get(user=self.request.user)
         title = self.request.POST.get('title')
         blog_image = self.request.FILES.get('blog_image')
+        categories = self.request.POST.getlist('categories[]')
         
         if not title:
             # form.add_error(None,'This field is required')
@@ -34,6 +35,10 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         instance.title = title
         instance.blog_image = blog_image
         instance.save()
+        for cat in categories:
+            obj, _ = Categories.objects.get_or_create(category_name=cat.lower())
+            instance.categoires.add(obj)
+        
 
         return super().form_valid(form)
 

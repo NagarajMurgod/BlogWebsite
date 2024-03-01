@@ -15,6 +15,8 @@ class Categories(BaseModel):
         self.full_clean()
         return super().save(*args,**kwargs)
 
+    def __str__(self):
+        return f"{self.category_name}"
 
 
 class Blog(BaseModel):
@@ -23,7 +25,7 @@ class Blog(BaseModel):
     slug = models.SlugField(max_length=255,null=True,blank=True, unique=True)
     blog_image = models.ImageField(upload_to='blog/blog_images/')
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='blogs')
-    # categoires = models.ManyToManyField(Categories, through="CategoryBlog", related_name='blogs')
+    categories = models.ManyToManyField(Categories, through="CategoryBlog", related_name='blogs')
 
 
     def __str__(self):
