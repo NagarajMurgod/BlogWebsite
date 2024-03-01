@@ -76,6 +76,7 @@
 <section class="all_blog_container my-5">
     <div class="blog-cat-wrapper">
         <div class="all_blog_wrapper">
+            
         </div>
         <div class="cat_card">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error inventore voluptates nam! Ipsa nulla
@@ -85,4 +86,40 @@
     </div>
 </section>
 
+{% endblock %}
+
+{% block js %}
+<script>
+    function appendBlogs(value, idx, arr) {
+        block = document.querySelector('.all_blog_wrapper')
+        // console.log(value)
+        block.innerHTML += ` 
+        <div class='px-5 d-flex gap-2 text-align-vertical'>
+            <img src="${value.profile.profile_img}" style="width:1.7rem;height:1.7rem;" class="rounded-circle" alt="">
+            <p>${value.profile.name}</p>
+            <p style="color:#7f7f7f"></p>
+        </div>                   
+        <div class="blog_card px-5 mb-5">
+            <div class="blog_content">
+                <h3 class="fw-bold">${value.title}</h3>
+                <p>${value.content}</p>
+            </div>
+            <div class="blog_img">
+                <img src="${value.blog_image}" alt="">
+            </div>
+        </div>`
+    }
+
+    function get_all_blogs() {
+        fetch('http://127.0.0.1:8000/blog/api/getallblogs/')
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                data.forEach(appendBlogs);
+            })
+    }
+
+    get_all_blogs()
+</script>
 {% endblock %}

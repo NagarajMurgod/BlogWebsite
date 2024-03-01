@@ -25,7 +25,7 @@
         <div class="user_blog_detail me-3">
 
             <div class="d-flex gap-5 me-5" style="border-bottom: 1px solid rgb(238, 238, 238);">
-                <button class="btn px-0 rounded-0  " style="font-size: 1.2rem; border-bottom: 1px solid rgb(100, 100, 100);">My Blogs</button>
+                <button class="btn px-0 rounded-0" style="font-size: 1.2rem; border-bottom: 1px solid rgb(100, 100, 100);">My Blogs</button>
                 <button class="btn px-0 rounded-0" style="font-size: 1.2rem;">Followers</button>
                 <button class="btn px-0 rounded-0" style="font-size: 1.2rem;">Following</button>
             </div>
@@ -34,6 +34,7 @@
                     {% for blog in object_list %}
                     <div class="blog_card my-5">
                         <div class="blog_content">
+                            
                             <h3 class="fw-bold">{{blog.title}}</h3>
                             <p>{{blog.content|truncatewords:30|safe}}</p>
                         </div>

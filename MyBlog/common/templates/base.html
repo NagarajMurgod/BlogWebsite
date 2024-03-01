@@ -21,6 +21,9 @@
 
 </head>
 
+{% block css %}
+
+{% endblock %}
 <body>
     <nav class="main-nav-bar bg-dark">
         <div class="nav-content-wrapper">
@@ -184,9 +187,8 @@
     {% endblock %}
 
 </body>
-<script src="{% static '/common/js/navbar.js' %}">
 
-
-</script>
-
+{% block js %}
+<script src="{% static '/common/js/navbar.js' %}"></script>
+{% endblock %}
 </html>

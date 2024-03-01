@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Blog
 from user.serializers import ProfileSerializer
+from django.contrib.humanize.templatetags.humanize import naturaltime
 
 class BlogSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer()
@@ -16,6 +17,9 @@ class BlogSerializer(serializers.ModelSerializer):
         ]
 
     def to_representation(self, instance):
+
         sd = super().to_representation(instance)
-        sd['content'] = sd['content'][:400]+'...'
+      
+        sd['content'] = sd['content'][:300]+'...'
+   
         return sd
