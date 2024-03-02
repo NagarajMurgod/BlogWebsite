@@ -13,21 +13,22 @@
 {% block css %}
 <style>
     .select2-selection{
-        padding: 8px;
+        padding: 5px;
         display: flex !important;
         align-item: center;
+        border: 1px solid #e6e6e6!important;
 
     }
 
     .select2-search__field{
-        height: 2rem !important;
-        margin-bottom: 0.5rem !important;
+        height: 1.5rem !important;
+        /* margin-bottom: 0.5rem !important; */
         padding: 5px  !important;
         /* border: 1px solid red !important; */
     }
 
     .select2-selection__choice{
-        margin : 0 5px -15px 0 !important;
+        margin : 0 5px -12px 0 !important;
         background-color : #f2f2f2 !important;
         font-size:1.2rem !important;
         
@@ -65,14 +66,15 @@
                 <label for="title" class="form-label fs-5 fw-bold" style="color: grey;">Blog image:</label>
                 <input type="file" name="blog_image" class="form-control w-100" id="inputGroupFile01">
             </div>
-
-            <div class="blogeditor mb-4">
+            <div class="input-group mb-4 d-flex flex-column ">
+                <label for="title" class="form-label fs-5 fw-bold" style="color: grey;">Add categores:</label>
+                <select class="js-example-basic-multiple form-control w-100" name="categories[]" multiple='multiple'>
+    
+                </select>
+            </div>
+            <div class="blogeditor my-4">
                 {{form.as_p}}
             </div>
-
-            <select class="js-example-basic-multiple form-control" name="categories[]" multiple='multiple'>
-
-            </select>
 
             <button type="submit" class="btn btn-dark fw-bold mt-5">Create Blog</button>
         </form>
@@ -86,9 +88,19 @@
 <script>
     $(document).ready(function() {
         $('.js-example-basic-multiple').select2({
-            placeholder: "Add categories",
             tags: true,
-            tokenSeparators: [',', ' ']
+            tokenSeparators: [',', ' '],
+            ajax: {
+                url: "http://127.0.0.1:8000/blog/api/get_categories/",
+                dataType: 'json',
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {id: item.id, text: item.category_name};
+                        })
+                    };
+                }
+            }
         });
     });
 </script>

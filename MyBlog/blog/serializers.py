@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Blog
+from .models import Blog,Categories
 from user.serializers import ProfileSerializer
 from django.contrib.humanize.templatetags.humanize import naturaltime
 
@@ -23,3 +23,10 @@ class BlogSerializer(serializers.ModelSerializer):
         sd['content'] = sd['content'][:300]+'...'
    
         return sd
+
+
+class CategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Categories
+        fields = '__all__'

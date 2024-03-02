@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from user.models import Profile
 from django.contrib import messages
 from rest_framework.generics import ListAPIView
-from .serializers import BlogSerializer
+from .serializers import BlogSerializer,CategorySerializer
 
 
 class CreateBlog(LoginRequiredMixin, CreateView):
@@ -47,6 +47,22 @@ class GetAllBlogsApiView(ListAPIView):
     
     queryset = Blog.objects.all().order_by('-created_at')
     serializer_class = BlogSerializer
+
+
+class GetCategories(ListAPIView):
+    
+    serializer_class = CategorySerializer
+
+    def get_queryset(self):
+        term = self.request.GET.get('term')
+        queryset = Categories.objects.filter(category_name__icontains = term)
+        return queryset
+
+
+
+
+
+
     
 
 
