@@ -230,6 +230,7 @@ body{
 
 .blog_card{
     display: flex;
+    height: 10rem;
 
 }
 
@@ -244,6 +245,7 @@ body{
 
 .blog_content{
     flex-basis: 70%;
+    text-wrap: wrap;
 }
 
 .all_blog_wrapper{

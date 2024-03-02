@@ -35,9 +35,13 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         instance.title = title
         instance.blog_image = blog_image
         instance.save()
+
         for cat in categories:
-            obj, _ = Categories.objects.get_or_create(category_name=cat.lower())
-            instance.categoires.add(obj)
+            if cat.isnumeric():
+                obj = Categories.objects.get(id=int(cat))
+            else:
+                obj, _ = Categories.objects.get_or_create(category_name=cat.lower())
+            instance.categories.add(obj)
         
 
         return super().form_valid(form)

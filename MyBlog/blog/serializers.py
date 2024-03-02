@@ -19,8 +19,7 @@ class BlogSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
 
         sd = super().to_representation(instance)
-      
-        sd['content'] = sd['content'][:300]+'...'
+        sd['content'] = sd['content'][:400]+'...'
    
         return sd
 
