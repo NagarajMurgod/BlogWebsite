@@ -6,10 +6,9 @@ Welcome to my first Django project! This blog website is a platform where I'm ho
 ![BLOG website ER MODEL!](./images/blog_model.png)
 
 ### Technologies Used:
-
     + Django Framework
-    + Django Rest Framework
-    + Web Technologies
+    - Django Rest Framework
+    * Web Technologies
       + HTML, CSS, JS
-      + Boostrap
+      - Boostrap
     
