@@ -7,7 +7,7 @@ from user.models import Profile
 from django.contrib import messages
 from rest_framework.generics import ListAPIView
 from .serializers import BlogSerializer,CategorySerializer
-
+from django.template.defaultfilters import slugify
 
 class CreateBlog(LoginRequiredMixin, CreateView):
     form_class = BlogForm
@@ -34,6 +34,7 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         
         instance.title = title
         instance.blog_image = blog_image
+        instance.slug = slugify(title)
         instance.save()
 
         for cat in categories:
@@ -52,6 +53,15 @@ class GetAllBlogsApiView(ListAPIView):
     queryset = Blog.objects.all().order_by('-created_at')
     serializer_class = BlogSerializer
 
+
+class FilterBLogApiView(ListAPIView):
+    serializer_class = BlogSerializer
+
+    def get_queryset(self):
+        category = Categories.objects.get(id=self.kwargs['id'])
+        blogs = Blog.objects.filter(categories=category)
+
+        return blogs
 
 class GetCategories(ListAPIView):
     

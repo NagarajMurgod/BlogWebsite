@@ -10,11 +10,8 @@ body{
 
 .main-nav-bar {
     /* border: 1px solid red; */
-    position: relative;
     padding: 1.4rem 10%;
 
-    
-  
 }
 
 
@@ -254,7 +251,7 @@ body{
 }
 .cat_card{
     flex: 30%;
-    /* border: 1px solid red; */
+    width: 300px;
 }
 
 
