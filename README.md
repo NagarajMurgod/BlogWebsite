@@ -11,3 +11,10 @@ Welcome to my first Django project! This blog website is a platform where I'm ho
 - HTML, CSS, JS
 - Boostrap
     
+
+## Website Screenshot
+![BLOG website ER MODEL!](./images/front_end1.png)
+
+![BLOG website ER MODEL!](./images/front_end1.png)
+
+![BLOG website ER MODEL!](./images/front_end3.png)
