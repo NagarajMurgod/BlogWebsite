@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block body %}
+<section class=" slogan-section">
+    <div class="blog-background-img">
+        <img src="{% static 'blog-background5.jpeg' %}" alt="">
+    </div>
+    <div class="slogan">
+        <div class="slogan-logo" style="display: flex;">
+            <img src="{% static 'blog_logo.svg' %}" alt="">
+            <!-- <h1>BLOGOSPHARE</h1> -->
+        </div>
+        <h1 class="fw-bold">Dive into the Depths of Knowledge</h1>
+        <h5>Create a unique and beautiful blog easily.</h5>
+        {% if request.user.is_authenticated %}
+        <form action="{% url 'addblog' %}">
+            <button class="btn btn-success fw-bold">Share you thoughts</button>
+        </form>
+        {% else %}
+        <button class="btn btn-success fw-bold" type="button" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Share you thoughts</button>
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- <section class="recent_blog py-5">
+    <h2 class="mb-5 fw-bold text-center">Trending Blogs on Blogosphare</h2>
+    <div class="recent_blog_wrapper cards gap-2">
+ 
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+
+        </div>
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+
+        </div>
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+
+        </div>
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+        </div>
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+        </div>
+        <div class="card">
+            <h3 class="fw-bold">title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
+                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
+                obcaecati rerum.</p>
+        </div>
+    </div>
+</section> -->
+
+<section class="all_blog_container my-5">
+    
+    <div class="blog-cat-wrapper">
+        <div class="all_blog_wrapper mt-3">
+            <h2 class="mb-5 fw-bold mx-4 pb-1 ps-4" style="border-bottom: 1px solid #cccccc; color:dark">All Blogs:</h2>
+            <div class="all_blogs w-100">
+
+            </div>
+        </div>
+        <div class="cat_card  mt-3">
+            <h2 class="mb-5 fw-bold mx-2 pb-1 " style="border-bottom: 1px solid #cccccc; color:dark">Topics:</h2>
+            <div class="mx-2 d-flex gap-3 flex-wrap" >
+                {% for category in object_list %}
+                <button style="background-color: #e6e6e6" class="btn py-2 px-3 rounded-pill" onclick="getBlogs({{category.id}})">{{category|capfirst }}</button>
+                {% endfor %}
+                <button style="background-color: #e6e6e6" class="btn py-2 px-3 rounded-pill" onclick="get_all_blogs()">Show all</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    function appendBlogs(value, idx, arr) {
+        block = document.querySelector('.all_blogs')
+        // console.log(value)
+        block.innerHTML += ` 
+        <div class='px-5 d-flex gap-2 text-align-vertical'>
+            <img src="${value.profile.profile_img}" style="width:1.7rem;height:1.7rem;" class="rounded-circle" alt="">
+            <p>${value.profile.name}</p>
+            <p style="color:#7f7f7f"></p>
+        </div>                   
+        <div class="blog_card px-5 mb-5">
+            <div class="blog_content">
+                <h4 class="fw-bold">${value.title}</h4>
+                <div class="overflow-hidden" style="height: 70%">${value.content}</div>
+            </div>
+            <div class="blog_img">
+                <img src="${value.blog_image}" alt="">
+            </div>
+        </div>`
+    }
+
+    function get_all_blogs() {
+        fetch('http://127.0.0.1:8000/blog/api/getallblogs/')
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                data.forEach(appendBlogs);
+            })
+    }
+
+    get_all_blogs()
+
+    function getBlogs(id) {
+        fetch('http://127.0.0.1:8000/blog/api/filterBlogs/'+id+"/")
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                // document.querySelector('.all_blogs').innerHTML = ""
+                // data.forEach(appendBlogs);;
+            })
+    }
+
+</script>
+{% endblock %}

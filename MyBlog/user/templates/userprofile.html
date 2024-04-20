@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+
+
+    .profile_wrapper{
+        display: flex;
+        margin: 6rem 11% 0;
+        /* border: 1px solid red; */
+        min-height: 75vh;
+      
+    }
+
+    .use_detail {
+        /* border: 1px solid red; */
+        border-left: 1px solid rgb(221, 221, 221);
+        flex-basis: 70rem;
+    }
+</style>
+<section class="profile_container">
+
+    <div class="profile_wrapper">
+        <div class="user_blog_detail me-3">
+
+            <div class="d-flex gap-5 me-5" style="border-bottom: 1px solid rgb(238, 238, 238);">
+                <button class="btn px-0 rounded-0" style="font-size: 1.2rem; border-bottom: 1px solid rgb(100, 100, 100);">My Blogs</button>
+                <button class="btn px-0 rounded-0" style="font-size: 1.2rem;">Followers</button>
+                <button class="btn px-0 rounded-0" style="font-size: 1.2rem;">Following</button>
+            </div>
+            <div class="pt-4 pe-5">
+                <div class="user_blog_wrapper">
+                    {% for blog in object_list %}
+                    <div class="blog_card my-5">
+                        <div class="blog_content">
+                            
+                            <h3 class="fw-bold">{{blog.title}}</h3>
+                            <p>{{blog.content|truncatewords:30|safe}}</p>
+                        </div>
+                        <div class="blog_img ms-3" style="width: 16rem;height: 10rem;">
+                            <img src="http://127.0.0.1:8000/media/{{blog.blog_image}}" class="w-100 h-100" alt="">
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="use_detail ps-4">
+            <div>
+                <div class="user_dp_name_followers">
+                    <img style="width: 7rem;height: 7rem; border-radius: 50rem;object-fit: cover;"
+                        src="http://127.0.0.1:8000/media/{{profile_data.profile_img}}" alt="">
+                    <h3 class="pt-3 ps-1">{{profile_data.name}}</h3>
+                    <p class="ps-1"> 25 followers</p>
+                </div>
+
+                <div class="ps-1 pe-4">
+                    <p class="user_bio" style="text-align: justify;">{{profile_data.bio}}
+                    </p>
+                    <div>
+                        <button class="btn btn-dark">Follow</button>
+                        <a href="#" class="ms-2 text-success" > Edit profle </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
