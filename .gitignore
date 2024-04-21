@@ -1,0 +1,4 @@
+.env
+migrations
+/MyBlog/*/__pycache__
+.gitignore
