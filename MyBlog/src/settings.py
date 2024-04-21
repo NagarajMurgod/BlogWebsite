@@ -146,11 +146,6 @@ AUTH_USER_MODEL = 'authentication.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-<<<<<<< HEAD
-LOGIN_IN = ''
-=======
-
->>>>>>> f3e639127bc8bd9ab3d7ade583653d190f736d67
 import os
 
 MEDIA_URL = '/media/'

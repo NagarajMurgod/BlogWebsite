@@ -25,10 +25,7 @@ class Blog(BaseModel):
     slug = models.SlugField(max_length=255,null=True,blank=True, unique=True)
     blog_image = models.ImageField(upload_to='blog/blog_images/')
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='blogs')
-<<<<<<< HEAD
-    description = models.CharField(max_length=255,default="")
-=======
->>>>>>> f3e639127bc8bd9ab3d7ade583653d190f736d67
+    # description = models.CharField(max_length=255,default="")
     categories = models.ManyToManyField(Categories, through="CategoryBlog", related_name='blogs')
 
 

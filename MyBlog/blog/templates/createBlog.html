@@ -18,10 +18,6 @@
         align-item: center;
         border: 1px solid #e6e6e6!important;
         width: 100%;
-<<<<<<< HEAD
-        
-=======
->>>>>>> f3e639127bc8bd9ab3d7ade583653d190f736d67
 
     }
 
@@ -38,7 +34,7 @@
         font-size:1.2rem !important;
         
     }
-
+}
 </style>
 {% endblock %}
 
@@ -74,14 +70,19 @@
             <div class="input-group mb-4 d-flex flex-column ">
                 <label for="title" class="form-label fs-5 fw-bold" style="color: grey;">Add categores:</label>
                 <select class="js-example-basic-multiple form-control w-100" name="categories[]" multiple='multiple'>
-    
+
                 </select>
+            </div>
+            <div class="mb-4">
+                <label for="title" class="form-label fs-5 fw-bold" style="color: grey;">Description:</label>
+                <input type="text" name="description" class="form-control" id="title" aria-describedby="emailHelp">
+                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
             <div class="blogeditor my-4">
                 {{form.as_p}}
             </div>
 
-            <button type="submit" class="btn btn-dark fw-bold mt-5">Create Blog</button>
+            <button type="submit" class="btn btn-dark fw-bold mt-2">Create Blog</button>
         </form>
     </div>
 </div>
