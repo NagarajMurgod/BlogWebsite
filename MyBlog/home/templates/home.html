@@ -100,6 +100,7 @@
 <script>
     function appendBlogs(value, idx, arr) {
         block = document.querySelector('.all_blogs')
+        console.log(value.content.toLowerCase())
         // console.log(value)
         block.innerHTML += ` 
         <div class='px-5 d-flex gap-2 text-align-vertical'>
@@ -110,7 +111,7 @@
         <div class="blog_card px-5 mb-5">
             <div class="blog_content">
                 <h4 class="fw-bold">${value.title}</h4>
-                <div class="overflow-hidden" style="height: 70%">${value.content}</div>
+                <div  style="height: 70%;padding-bottom: 2rem;">${value.content}</div>
             </div>
             <div class="blog_img">
                 <img src="${value.blog_image}" alt="">
@@ -124,6 +125,7 @@
                 return response.json();
             })
             .then((data) => {
+                document.querySelector('.all_blogs').innerHTML = ""
                 data.forEach(appendBlogs);
             })
     }
@@ -136,8 +138,8 @@
                 return response.json();
             })
             .then((data) => {
-                // document.querySelector('.all_blogs').innerHTML = ""
-                // data.forEach(appendBlogs);;
+                document.querySelector('.all_blogs').innerHTML = ""
+                data.forEach(appendBlogs);
             })
     }
 

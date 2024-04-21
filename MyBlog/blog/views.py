@@ -9,6 +9,7 @@ from rest_framework.generics import ListAPIView
 from .serializers import BlogSerializer,CategorySerializer
 from django.template.defaultfilters import slugify
 
+
 class CreateBlog(LoginRequiredMixin, CreateView):
     form_class = BlogForm
     template_name = 'createBlog.html'
@@ -21,7 +22,7 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         instance.profile = Profile.objects.get(user=self.request.user)
         title = self.request.POST.get('title')
         blog_image = self.request.FILES.get('blog_image')
-        # desc = self.request.POST.get('description')
+
         categories = self.request.POST.getlist('categories[]')
         
         if not title:
@@ -32,10 +33,7 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         if not blog_image:
             messages.error(self.request, "Blog image  is required")
             return self.form_invalid(form)
-        
-        # if not desc:
-        #     messages.error(self.request, "description is required")
-        #     return self.form_invalid(form)
+
         
         instance.title = title
         instance.blog_image = blog_image
