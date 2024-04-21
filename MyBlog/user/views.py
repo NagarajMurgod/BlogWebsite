@@ -6,7 +6,7 @@ from rest_framework.generics import RetrieveAPIView
 from .serializers import ProfileSerializer
 from .models import Profile
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from blog.serializers import BlogSerializer
 
 User = get_user_model()
 
@@ -28,13 +28,13 @@ class ProfileView(LoginRequiredMixin,ListView):
         context = super().get_context_data()
         user = Profile.objects.filter(user_id = self.request.user.id).first()
         context['profile_data'] = user
-    
         return context
 
 
     def get_queryset(self):
         blogs = Blog.objects.filter(profile__user_id=self.request.user.id)
-        return blogs
+        serializer = BlogSerializer(blogs, many=True)
+        return serializer.data
 
 
   
