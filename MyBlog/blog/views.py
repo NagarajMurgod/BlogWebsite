@@ -1,13 +1,15 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView,DetailView
 from .forms import BlogForm
 from .models import Blog,Categories
 from django.contrib.auth.mixins import LoginRequiredMixin
 from user.models import Profile
 from django.contrib import messages
 from rest_framework.generics import ListAPIView
+
 from .serializers import BlogSerializer,CategorySerializer
 from django.template.defaultfilters import slugify
+
 
 
 class CreateBlog(LoginRequiredMixin, CreateView):
@@ -49,6 +51,9 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         
 
         return super().form_valid(form)
+
+class DisplayBlog(DetailView):
+    pass
 
     
 class GetAllBlogsApiView(ListAPIView):

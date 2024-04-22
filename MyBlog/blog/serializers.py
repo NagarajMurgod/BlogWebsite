@@ -14,6 +14,7 @@ class BlogSerializer(serializers.ModelSerializer):
             'content',
             'blog_image',
             'created_at',
+            'slug',
             'profile'
         ]
 

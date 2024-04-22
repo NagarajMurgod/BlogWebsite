@@ -66,13 +66,16 @@
         block.innerHTML += ` 
         <div class='px-5 d-flex gap-2 text-align-vertical'>
             <img src="${value.profile.profile_img}" style="width:1.7rem;height:1.7rem;" class="rounded-circle" alt="">
-            <form action="http://127.0.0.1:8000/profile/${value.profile.name}/">
+            <form action="http://127.0.0.1:8000/blog/${value.profile.id}/">
                 <button class="dropdown-item" type="submit"><p>${value.profile.name}</p></button>
             </form>
         </div>                   
         <div class="blog_card px-5 mb-5">
             <div class="blog_content">
-                <h4 class="fw-bold fs-5">${value.title}</h4>
+                
+                <form action="http://127.0.0.1:8000/blog/${value.slug}/">
+                    <button class="dropdown-item" type="submit"><h4 class="fw-bold fs-5">${value.title}</h4></button>
+                </form>
                 <div  style="height: 70%;padding-bottom: 2rem;">${value.content}</div>
             </div>
             <div class="blog_img h-78">
