@@ -27,63 +27,24 @@
     </div>
 </section>
 
-<!-- <section class="recent_blog py-5">
-    <h2 class="mb-5 fw-bold text-center">Trending Blogs on Blogosphare</h2>
-    <div class="recent_blog_wrapper cards gap-2">
- 
-        <div class="card">
-            <h3 class="fw-bold">title</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                obcaecati rerum.</p>
 
-        </div>
-        <div class="card">
-            <h3 class="fw-bold">title</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                obcaecati rerum.</p>
-
-        </div>
-        <div class="card">
-            <h3 class="fw-bold">title</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                obcaecati rerum.</p>
-
-        </div>
-        <div class="card">
-            <h3 class="fw-bold">title</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                obcaecati rerum.</p>
-        </div>
-        <div class="card">
-            <h3 class="fw-bold">title</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                obcaecati rerum.</p>
-        </div>
-        <div class="card">
-            <h3 class="fw-bold">title</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius deleniti repellat eum libero esse totam
-                nisi ducimus quae vel, ullam inventore nostrum distinctio eligendi voluptatem sapiente ex! Eius,
-                obcaecati rerum.</p>
-        </div>
-    </div>
-</section> -->
 
 <section class="all_blog_container my-5">
     
     <div class="blog-cat-wrapper">
         <div class="all_blog_wrapper mt-3">
-            <h2 class="mb-5 fw-bold mx-4 pb-1 ps-4" style="border-bottom: 1px solid #cccccc; color:dark">All Blogs:</h2>
+    
+            <div class="d-flex mb-5 mx-5" style="border-bottom: 1px solid #cccccc;">
+                <button class="ms-1 pb-1 fs-5" style="color:#555555;border:none;background:none;">All Blogs</button>
+                <button class="ms-1 pb-1 ms-5 fs-5" style="color:#555555;border:none;background:none;">For you</button>
+            </div>
             <div class="all_blogs w-100">
 
             </div>
         </div>
         <div class="cat_card  mt-3">
-            <h2 class="mb-5 fw-bold mx-2 pb-1 " style="border-bottom: 1px solid #cccccc; color:dark">Topics:</h2>
+            <h2 class="mb-5 fw-bold mx-2 fs-4">Topics</h2>
+
             <div class="mx-2 d-flex gap-3 flex-wrap" >
                 {% for category in object_list %}
                 <button style="background-color: #e6e6e6" class="btn py-2 px-3 rounded-pill" onclick="getBlogs({{category.id}})">{{category|capfirst }}</button>
@@ -101,19 +62,20 @@
     function appendBlogs(value, idx, arr) {
         block = document.querySelector('.all_blogs')
         console.log(value.content.toLowerCase())
-        // console.log(value)
+
         block.innerHTML += ` 
         <div class='px-5 d-flex gap-2 text-align-vertical'>
             <img src="${value.profile.profile_img}" style="width:1.7rem;height:1.7rem;" class="rounded-circle" alt="">
-            <p>${value.profile.name}</p>
-            <p style="color:#7f7f7f"></p>
+            <form action="http://127.0.0.1:8000/profile/${value.profile.name}/">
+                <button class="dropdown-item" type="submit"><p>${value.profile.name}</p></button>
+            </form>
         </div>                   
         <div class="blog_card px-5 mb-5">
             <div class="blog_content">
-                <h4 class="fw-bold">${value.title}</h4>
+                <h4 class="fw-bold fs-5">${value.title}</h4>
                 <div  style="height: 70%;padding-bottom: 2rem;">${value.content}</div>
             </div>
-            <div class="blog_img">
+            <div class="blog_img h-78">
                 <img src="${value.blog_image}" alt="">
             </div>
         </div>`

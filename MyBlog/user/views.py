@@ -15,8 +15,10 @@ class ProfileApiView(RetrieveAPIView):
     serializer_class = ProfileSerializer
 
     def get_object(self):
-        profile = Profile.objects.get(user_id=self.request.user.id)
-        return profile
+        if self.request.user.is_authenticated:
+            profile = Profile.objects.get(user_id=self.request.user.id)
+            return profile
+        return None
 
 
 
