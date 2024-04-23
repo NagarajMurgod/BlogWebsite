@@ -2,6 +2,19 @@
 {% load static %}
 
 {% block body %}
-{{blog.title}}
-{{blog.content|safe}}
+
+<div class='blog-container'>
+    <div class="blog-wrapper m-auto mt-5" style="width:700px;font-family: source-serif-pro;line-height: 1.7;">
+        <h1 class='fw-bold'>
+            {{blog.title}}
+        </h1>
+        <img class="w-100 py-5" src="{{blog.blog_image.url}}" alt="">
+        <div class="w-100" style="text-align: justify;text-justify: inter-word;" >
+            <p>
+                {{blog.content|safe}}
+            </p>
+                
+        </div>
+    </div>
+</div>
 {% endblock %}
