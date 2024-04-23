@@ -53,8 +53,9 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 class DisplayBlog(DetailView):
-    pass
-
+    template_name = 'displayBlog.html'
+    model = Blog
+    context_object_name = 'blog'
     
 class GetAllBlogsApiView(ListAPIView):
     
