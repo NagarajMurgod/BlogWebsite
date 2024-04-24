@@ -8,7 +8,11 @@
         <h1 class='fw-bold'>
             {{blog.title}}
         </h1>
-        <img class="w-100 py-5" src="{{blog.blog_image.url}}" alt="">
+        <div class="d-flex gap-2 mt-4 mb-2">
+            <img src="{{blog.profile.profile_img.url}}" style="width:2.2rem;height:2.2rem;" class="rounded-circle" alt="">
+            <p style="font-size: 1.2rem">{{blog.profile.name}}</p>
+        </div>
+        <img class="w-100 pb-5" src="{{blog.blog_image.url}}" alt="">
         <div class="w-100" style="text-align: justify;text-justify: inter-word;" >
             <p>
                 {{blog.content|safe}}

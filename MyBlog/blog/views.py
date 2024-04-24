@@ -54,8 +54,12 @@ class CreateBlog(LoginRequiredMixin, CreateView):
 
 class DisplayBlog(DetailView):
     template_name = 'displayBlog.html'
-    model = Blog
+    # model = Blog
     context_object_name = 'blog'
+
+    def get_object(self):
+        blog_info = Blog.objects.select_related('profile').filter(slug = self.kwargs['slug']).first()
+        return blog_info
     
 class GetAllBlogsApiView(ListAPIView):
     
