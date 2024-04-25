@@ -31,30 +31,34 @@
             </div>
             <div class="pt-4 pe-5">
                 <div class="user_blog_wrapper">
-                    {% for blog in object_list %}
+                    {% for blog in blogs %}
                     <div class="blog_card my-5">
+                     
                         <div class="blog_content">
-                            <div class='d-flex gap-2 text-align-vertical'>
-                                <img src="http://127.0.0.1:8000/media/{{profile_data.profile_img}}" style="width:1.7rem;height:1.7rem;" class="rounded-circle" alt="">
+                       
+                            <div class="d-flex gap-2 text-align-vertical">
+                                <img src="{{profile_data.profile_img}}" style="width:1.7rem;height:1.7rem;" class="rounded-circle" alt="">
                                 <p>{{profile_data.name}}</p>
                                 <p style="color:#7f7f7f"></p>
                             </div> 
                             <h3 class="fw-bold">{{blog.title}}</h3>
-                            <p>{{blog.content|truncatewords:50|safe}}</p>
+                            <p>{{blog.content|truncatewords:50}}</p>
                         </div>
                         <div class="blog_img ms-3" style="width: 16rem;height: 10rem;">
-                            <img src="http://127.0.0.1:8000/{{blog.blog_image}}" class="w-100 h-100" alt="">
+                            <img src="{{blog.blog_image.url}}" class="w-100 h-100" alt="">
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
+         
         </div>
         <div class="use_detail ps-4">
             <div>
                 <div class="user_dp_name_followers">
                     <img style="width: 7rem;height: 7rem; border-radius: 50rem;object-fit: cover;"
-                        src="http://127.0.0.1:8000/media/{{profile_data.profile_img}}" alt="">
+                        src="{{profile_data.profile_img}}" alt="">
+                    <h3>{{profile_data.name}}</h3>
                     <h3 class="pt-3 ps-1">{{profile_data.name}}</h3>
                     <p class="ps-1"> 25 followers</p>
                 </div>

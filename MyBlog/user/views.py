@@ -25,19 +25,23 @@ class ProfileApiView(RetrieveAPIView):
 
 class ProfileView(LoginRequiredMixin,ListView):
     template_name = 'userprofile.html'
-
-    def get_context_data(self):
-        context = super().get_context_data()
+    context_object_name = 'blogs'
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
         user = Profile.objects.filter(user_id = self.request.user.id).first()
-        context['profile_data'] = user
+        user_details = {
+            'name' : user.name,
+            'profile_img': user.profile_img.url,
+            'bio' : user.bio
+        }
+        print(user_details)
+        context['profile_data'] = user_details
         return context
 
 
     def get_queryset(self):
         blogs = Blog.objects.filter(profile__user_id=self.request.user.id)
-        serializer = BlogSerializer(blogs, many=True)
-        return serializer.data
-
+        return blogs
 
   
 
