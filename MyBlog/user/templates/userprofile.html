@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load filters %}
 {% block body %}
 
 <style>
@@ -41,8 +42,8 @@
                                 <p>{{profile_data.name}}</p>
                                 <p style="color:#7f7f7f"></p>
                             </div> 
-                            <h3 class="fw-bold">{{blog.title}}</h3>
-                            <p>{{blog.content|truncatewords:50}}</p>
+                            <h4 class="fw-bold">{{blog.title}}</h4>
+                            <p>{{blog.content|striptags|truncatewords:30}}</p>
                         </div>
                         <div class="blog_img ms-3" style="width: 16rem;height: 10rem;">
                             <img src="{{blog.blog_image.url}}" class="w-100 h-100" alt="">
