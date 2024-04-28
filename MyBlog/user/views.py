@@ -26,9 +26,14 @@ class ProfileApiView(RetrieveAPIView):
 class ProfileView(LoginRequiredMixin,ListView):
     template_name = 'userprofile.html'
     context_object_name = 'blogs'
+
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         user = Profile.objects.filter(user_id = self.request.user.id).first()
+
+        print(self.request.user.id)
+        print(user)
+
         user_details = {
             'name' : user.name,
             'profile_img': user.profile_img.url,

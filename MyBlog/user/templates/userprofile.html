@@ -44,6 +44,7 @@
                             </div> 
                             <h4 class="fw-bold">{{blog.title}}</h4>
                             <p>{{blog.content|striptags|truncatewords:30}}</p>
+       
                         </div>
                         <div class="blog_img ms-3" style="width: 16rem;height: 10rem;">
                             <img src="{{blog.blog_image.url}}" class="w-100 h-100" alt="">
@@ -59,7 +60,6 @@
                 <div class="user_dp_name_followers">
                     <img style="width: 7rem;height: 7rem; border-radius: 50rem;object-fit: cover;"
                         src="{{profile_data.profile_img}}" alt="">
-                    <h3>{{profile_data.name}}</h3>
                     <h3 class="pt-3 ps-1">{{profile_data.name}}</h3>
                     <p class="ps-1"> 25 followers</p>
                 </div>
