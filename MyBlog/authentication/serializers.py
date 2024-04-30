@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers
 from django.core.validators import EmailValidator,validate_email
 from django.contrib.auth.password_validation import validate_password
-
+from user.models import Profile
 
 User = get_user_model()
 
@@ -22,6 +22,8 @@ class CreateUserSerializer(serializers.ModelSerializer):
                 'validators' : [EmailValidator]
             }
         }
+
+
 
     
     def validate(self,attrs):
@@ -43,10 +45,12 @@ class CreateUserSerializer(serializers.ModelSerializer):
         if user.exists():
             raise serializers.ValidationError('Email address is already exist')
 
-        return  value.lower()
+        return value.lower()
 
     def create(self, validated_data):
         user = User.objects.create_user( username=validated_data['email'], email = validated_data['email'],password=validated_data['password'])
+        name = validated_data['email'].split("@")[0]
+        Profile.objects.create(user=user,name=name)
         user.save()
         return user
     

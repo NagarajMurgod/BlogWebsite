@@ -9,7 +9,7 @@ class SignupView(APIView):
 
 
     def post(self,request, *args, **kwargs):
-
+     
         serialize = CreateUserSerializer(data=request.data)
 
         if serialize.is_valid():

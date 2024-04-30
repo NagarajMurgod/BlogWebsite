@@ -37,14 +37,12 @@ function signup() {
             return response.json()
         })
         .then((data) => {
-
-            console.log(data);
-            console.log(data.non_field_errors);
-            if (data.email) {
-                document.getElementById('emailHelp').innerText = data.email
-            }
-            else if (data.non_field_errors) {
+            console.log(data)
+            if (data.non_field_errors) {
                 document.getElementById('register_non_field_error').innerText = data.non_field_errors
+            }
+            else if(data.email){
+                document.getElementById('emailHelp').innerHTML = data.email
             }
         })
 }
