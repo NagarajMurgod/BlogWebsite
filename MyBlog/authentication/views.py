@@ -3,7 +3,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import CreateUserSerializer, UserLoginSerializer
 from django.contrib.auth import authenticate, login
+from django.views.generic import TemplateView
 
+class loginpage(TemplateView):
+    template_name = 'login.html'
+    
 
 class SignupView(APIView):
 

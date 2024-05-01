@@ -1,0 +1,33 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.main-container{
+    /* border: 5px solid red; */
+    min-height: 800px;
+    height: 100vh;
+}
+
+.container-wrapper{
+    /* border: 1px solid red; */
+    display: flex;
+    height: 100vh;
+}
+
+.flex-item{
+    flex: 1;
+    flex-basis: 50%;
+    /* border: 1px solid green; */
+}
+
+.right-container{
+    background-color: rgb(240, 240, 240);
+}
+.left-container{
+    background-color:#343a40;
+    color: white;
+}

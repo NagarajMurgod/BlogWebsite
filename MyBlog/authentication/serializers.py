@@ -66,10 +66,9 @@ class UserLoginSerializer(serializers.Serializer):
     def validate(self, attrs):
         email = attrs.get('email')
         password = attrs.get('password')
-        print(email, password)
+  
         if email and password:
             user = authenticate(request=self.context.get('request'), email=email.lower(), password=password)
-            print(user)
             if user is None:
                 raise serializers.ValidationError('Wrong username and password')
             attrs['user'] = user
