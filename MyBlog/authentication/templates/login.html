@@ -39,22 +39,8 @@
                 </div>
             </div>
             <div class="right-container flex-item">
-                <div class="login-page">
-                    <h2 class="mb-2">Login to Your account</h2>
-                    <p class="mb-4 fs-5" style="color: grey">Please enter your details</p>
-                    <form action="">
-                        <div class="email pb-4"> 
-                            <label for="">Email Address</label><br>
-                            <input class="py-2 px-2" type="email" placeholder="Enter your email">
-                        </div>
-                        <div class="password pb-4"> 
-                            <label for="">Password</label><br>
-                            <input class="py-2 px-2" type="password" placeholder="Enter your password">
-                        </div>
-                        <button class="btn btn-danger px-4">Login</button>
-                    </form>
-                    <p class="mt-4" style="color: grey;">Don't have account ? <span><a style="color:red" href="">Register here</a></span></p>
-                </div>
+                {% block form_template %}
+                {% endblock %}
             </div>
         </div>
     </div>

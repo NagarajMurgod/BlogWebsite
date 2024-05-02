@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView
 
 class loginpage(TemplateView):
-    template_name = 'login.html'
+    template_name = 'signup.html'
     
 
 class SignupView(APIView):

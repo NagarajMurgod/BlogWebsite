@@ -105,11 +105,11 @@
 
 .email input{
     border: 1px solid rgb(196, 196, 196);
-    width: 350px;
+    width: 400px;
 }
 .password input{
     border: 1px solid rgb(196, 196, 196);
-    width: 350px;
+    width: 400px;
 }
 
 .email label,
