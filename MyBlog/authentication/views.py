@@ -5,8 +5,12 @@ from .serializers import CreateUserSerializer, UserLoginSerializer
 from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView
 
-class loginpage(TemplateView):
+class LoginPage(TemplateView):
     template_name = 'login.html'
+
+
+class SignupPage(TemplateView):
+    template_name = 'signup.html'
     
 
 class SignupView(APIView):
