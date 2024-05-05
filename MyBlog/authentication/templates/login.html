@@ -1,17 +1,30 @@
 {% extends 'forms_base.html' %}
+{% load filters %}
+
 
 {% block form_template %}
 <div class="login-page">
     <h2 class="mb-2">Please Create Account</h2>
     <p class="mb-4 fs-5" style="color: grey">Please enter your details</p>
-    <form action="">
+    <form  method="post" action="http://127.0.0.1:8000/auth/login/">
+        {% csrf_token %}
         <div class="email pb-4"> 
-            <label for="">Email Address</label><br>
-            <input class="py-2 px-2" type="email" placeholder="Enter your email">
+            {{form.username.label_tag}}
+            {{form.username|addclass:'py-2 px-2'|placeholder:'Enter your email'}}
+
+            {% comment %}
+            <!-- <label for="">Email Address</label><br> -->
+            <!-- <input name='email' class="py-2 px-2" type="email" placeholder="Enter your email"> -->
+            {%  endcomment %}
         </div>
         <div class="password pb-4"> 
-            <label for="">Password</label><br>
-            <input class="py-2 px-2" type="password" placeholder="Enter your password">
+            {{form.password.label_tag}} <br>
+            {{form.password|addclass:'py-2 px-2'|placeholder:'Enter your password'}}
+
+            {% comment %}
+            <!-- <label for="">Password</label><br> -->
+            <!-- <input password="password" class="py-2 px-2" type="password" placeholder="Enter your password"> -->
+            {% endcomment %}
         </div>
         <button class="btn btn-danger px-4">Login</button>
     </form>

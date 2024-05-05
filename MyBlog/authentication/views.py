@@ -4,9 +4,16 @@ from rest_framework import status
 from .serializers import CreateUserSerializer, UserLoginSerializer
 from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView
+from django.contrib.auth.views import LoginView
+from .forms import LoginForm
+from django.urls import reverse_lazy
 
-class LoginPage(TemplateView):
+class LoginPage(LoginView):
     template_name = 'login.html'
+    # form_class = LoginForm
+    success_url = reverse_lazy('home')
+
+        
 
 
 class SignupPage(TemplateView):
