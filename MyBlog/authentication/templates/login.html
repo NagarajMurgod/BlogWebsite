@@ -4,27 +4,21 @@
 
 {% block form_template %}
 <div class="login-page">
-    <h2 class="mb-2">Please Create Account</h2>
+    <h2 class="mb-2">Login to your account</h2>
     <p class="mb-4 fs-5" style="color: grey">Please enter your details</p>
-    <form  method="post" action="http://127.0.0.1:8000/auth/login/">
+    {{next}}
+    <form  method="post" action="http://127.0.0.1:8000/auth/login/?next={{next}}">
         {% csrf_token %}
+        <div class="form-text mx-3">{{ form.non_field_errors }}</div>
         <div class="email pb-4"> 
             {{form.username.label_tag}}
             {{form.username|addclass:'py-2 px-2'|placeholder:'Enter your email'}}
-
-            {% comment %}
-            <!-- <label for="">Email Address</label><br> -->
-            <!-- <input name='email' class="py-2 px-2" type="email" placeholder="Enter your email"> -->
-            {%  endcomment %}
+            <div id="emailHelp" class="form-text">{{form.email.errors}}</div>
         </div>
         <div class="password pb-4"> 
             {{form.password.label_tag}} <br>
             {{form.password|addclass:'py-2 px-2'|placeholder:'Enter your password'}}
-
-            {% comment %}
-            <!-- <label for="">Password</label><br> -->
-            <!-- <input password="password" class="py-2 px-2" type="password" placeholder="Enter your password"> -->
-            {% endcomment %}
+            <div id="emailHelp" class="form-text">{{form.password.errors}}</div>
         </div>
         <button class="btn btn-danger px-4">Login</button>
     </form>

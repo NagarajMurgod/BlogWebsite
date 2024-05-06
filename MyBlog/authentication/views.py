@@ -8,12 +8,18 @@ from django.contrib.auth.views import LoginView
 from .forms import LoginForm
 from django.urls import reverse_lazy
 
-class LoginPage(LoginView):
+class LoginUserView(LoginView):
     template_name = 'login.html'
     # form_class = LoginForm
-    success_url = reverse_lazy('home')
+    # success_url = reverse_lazy('home')
 
-        
+    def get_redirect_url(self):
+
+        redirect_to = super().get_redirect_url()
+        print("url is :",self.request.GET.get('next'))
+        return redirect_to
+
+
 
 
 class SignupPage(TemplateView):
