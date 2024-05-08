@@ -4,12 +4,12 @@
 
 {% block form_template %}
 <div class="login-page">
+    {{form.non_field_errors}}
     <h2 class="mb-2">Login to your account</h2>
     <p class="mb-4 fs-5" style="color: grey">Please enter your details</p>
-    {{next}}
     <form  method="post" action="http://127.0.0.1:8000/auth/login/?next={{next}}">
         {% csrf_token %}
-        <div class="form-text mx-3">{{ form.non_field_errors }}</div>
+        {{form.field.errors}}
         <div class="email pb-4"> 
             {{form.username.label_tag}}
             {{form.username|addclass:'py-2 px-2'|placeholder:'Enter your email'}}

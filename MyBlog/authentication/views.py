@@ -13,13 +13,6 @@ class LoginUserView(LoginView):
     # form_class = LoginForm
     # success_url = reverse_lazy('home')
 
-    def get_redirect_url(self):
-
-        redirect_to = super().get_redirect_url()
-        print("url is :",self.request.GET.get('next'))
-        return redirect_to
-
-
 
 
 class SignupPage(TemplateView):

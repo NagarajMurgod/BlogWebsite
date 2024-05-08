@@ -63,11 +63,13 @@
                     </button>
                 </form>
                 {% if not request.user.is_authenticated %}
-                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal" onclick="clearLoginFormData()">Login</button>
 
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                    data-bs-target="#exampleModalRegister" onclick="clearSignupFormData()">Sign Up</button>
+                <form action="{% url 'login' %}">
+                    <button type="submit" class="btn btn-outline-primary">Login</button>
+                </form>
+                <form action="#">
+                    <button type="submit" class="btn btn-danger">Sign Up</button>
+                </form>
 
                 {% endif %}
 
@@ -88,7 +90,7 @@
                         </li>
                         <li><button class="dropdown-item" type="button">Another action</button></li>
                         <li>
-                            <form method="POST" action="auth/logout/">
+                            <form method="POST" action="{% url 'logout' %}">
                                 {% csrf_token %}
                                 <button type="submit" class="dropdown-item">Log out</button>
                             </form>
