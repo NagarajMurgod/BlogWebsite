@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import CreateView,DetailView
+from django.views.generic import CreateView,DetailView,ListView,TemplateView
 from .forms import BlogForm
 from .models import Blog,Categories
 from django.contrib.auth.mixins import LoginRequiredMixin
 from user.models import Profile
 from django.contrib import messages
 from rest_framework.generics import ListAPIView
-
 from .serializers import BlogSerializer,CategorySerializer
 from django.template.defaultfilters import slugify
 
@@ -60,6 +59,9 @@ class DisplayBlog(DetailView):
     def get_object(self):
         blog_info = Blog.objects.select_related('profile').filter(slug = self.kwargs['slug']).first()
         return blog_info
+
+class DisplayCategoryBlogView(TemplateView):
+    template_name = 'categoryBlogs.html'
     
 class GetAllBlogsApiView(ListAPIView):
     

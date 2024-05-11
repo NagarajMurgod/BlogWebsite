@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block css %}
+
+<style>
+    .blog-section{
+        /* border: 1px solid red; */
+    }
+
+    .category_scroll_bar{
+        min-width: 500px;
+        height: 30px;
+        width: 800px;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+
+    }
+
+    .wrapper::-webkit-scrollbar{
+        display: none;
+    }
+
+</style>
+
+{% endblock %}
+
+
+ {% block body %}
+<div class="main-section" style="background: 10px solid red;">
+    <div class="blog-section d-flex  justify-content-center my-3">
+        <div class="category_scroll_bar d-flex gap-2 overflow-x-auto">
+            <button class="">programming</button>
+            <button class="">programming</button>
+            <button class="">programming</button>
+            <button class="">programming</button>
+            <button class="">programming</button>
+            <button class="">programming</button>
+            <button class="">programming</button>
+            <button class="">programming</button>
+            <button class="">programming</button>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
