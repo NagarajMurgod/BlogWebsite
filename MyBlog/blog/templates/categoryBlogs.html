@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block csslink %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
 
 {% block css %}
 
@@ -11,15 +14,23 @@
 
     .category_scroll_bar{
         min-width: 500px;
-        height: 30px;
+        height: 40px;
         width: 800px;
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
+        scroll-behavior: smooth;
 
     }
 
     .wrapper::-webkit-scrollbar{
         display: none;
+    }
+
+    #right-scroll,
+    #left-scroll{
+        border: none;
+        background: none;
+        /* margin-left: -30px; */
     }
 
 </style>
@@ -28,20 +39,39 @@
 
 
  {% block body %}
-<div class="main-section" style="background: 10px solid red;">
-    <div class="blog-section d-flex  justify-content-center my-3">
-        <div class="category_scroll_bar d-flex gap-2 overflow-x-auto">
-            <button class="">programming</button>
-            <button class="">programming</button>
-            <button class="">programming</button>
-            <button class="">programming</button>
-            <button class="">programming</button>
-            <button class="">programming</button>
-            <button class="">programming</button>
-            <button class="">programming</button>
-            <button class="">programming</button>
+<div class="main-section">
+    <div class="blog-section d-flex  justify-content-center my-3 align-items-center">
+        <button id='left-scroll' class='px-3'><i class="fa fa-angle-left fs-2"></i></button>
+        <div id="category_list" class="category_scroll_bar  rounded-pill d-flex gap-2 overflow-x-auto overflow-y-hidden">
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
+            <button class="btn rounded-pill" style="background: #f2f2f2;">programming</button>
         </div>
+        <button id="right-scroll" class='px-3 py-1'><i class="fa fa-angle-right fs-2" style="color: black;"></i></button>
 
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+
+<script>
+    document.getElementById('left-scroll').addEventListener('click', ()=>{
+        document.getElementById("category_list").scrollBy(-300,0);
+    })
+
+    document.getElementById('right-scroll').addEventListener('click', ()=>{
+        document.getElementById("category_list").scrollBy(300,0);
+    })
+</script>
+
+
 {% endblock %}
