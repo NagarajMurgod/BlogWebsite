@@ -5,8 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from blog.models import Blog,Categories
 
 
-class Homeview(ListView):
-    ...
+
 class Homeview(ListView):
 
     template_name = 'home.html'

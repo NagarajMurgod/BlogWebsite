@@ -60,8 +60,18 @@ class DisplayBlog(DetailView):
         blog_info = Blog.objects.select_related('profile').filter(slug = self.kwargs['slug']).first()
         return blog_info
 
-class DisplayCategoryBlogView(TemplateView):
+
+
+class DisplayCategoryBlogView(ListView):
     template_name = 'categoryBlogs.html'
+    queryset = Categories.objects.all()
+    context_object_name = 'category'
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['active_category'] = self.kwargs['category']
+        return context
+
     
 class GetAllBlogsApiView(ListAPIView):
     
