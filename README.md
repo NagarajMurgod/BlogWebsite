@@ -17,8 +17,16 @@ Welcome to my first Django project! This blog website is a platform where I'm ho
 
 ---
 
+![BLOG website ER MODEL!](./images/front_end2.png)
+
+---
+
 ![BLOG website ER MODEL!](./images/front_end3.png)
 
 ---
 
-![BLOG website ER MODEL!](./images/front_end2.png)
+![BLOG website ER MODEL!](./images/front_end4.png)
+
+---
+
+![BLOG website ER MODEL!](./images/front_end5.png)
