@@ -88,6 +88,8 @@ class FilterBLogApiView(ListAPIView):
 
         return blogs
 
+
+
 class GetCategories(ListAPIView):
     
     serializer_class = CategorySerializer
