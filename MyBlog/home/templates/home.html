@@ -53,9 +53,8 @@
 
             <div class="mx-2 d-flex gap-3 flex-wrap" >
                 {% for category in object_list %}
-                <button style="background-color: #e6e6e6" class="btn py-2 px-3 rounded-pill" onclick="getBlogs({{category.id}})">{{category|capfirst }}</button>
+                <a href="{% url 'category_blogs' category %}" style="background-color: #e6e6e6" class="btn py-2 px-3 rounded-pill">{{category|capfirst }}</a>
                 {% endfor %}
-                <button style="background-color: #e6e6e6" class="btn py-2 px-3 rounded-pill" onclick="get_all_blogs()">Show all</button>
             </div>
         </div>
     </div>

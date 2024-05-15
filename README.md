@@ -30,3 +30,7 @@ Welcome to my first Django project! This blog website is a platform where I'm ho
 ---
 
 ![BLOG website ER MODEL!](./images/front_end5.png)
+
+---
+
+![BLOG website ER MODEL!](./images/front_end6.png)
