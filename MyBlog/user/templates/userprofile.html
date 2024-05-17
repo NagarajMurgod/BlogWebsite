@@ -3,6 +3,7 @@
 {% load filters %}
 {% block body %}
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
 
 
@@ -39,7 +40,6 @@
                 <div class="user_blog_wrapper">
                     {% for blog in blogs %}
                     <div class="blog_card my-5">
-                     
                         <div class="blog_content">
                        
                             <div class="d-flex gap-2 text-align-vertical">
@@ -47,13 +47,19 @@
                                 <p>{{profile_data.name}}</p>
                                 <p style="color:#7f7f7f"></p>
                             </div> 
-                            <h4 class="fw-bold">{{blog.title}}</h4>
+                            <a class="fw-bold text-decoration-none text-dark fs-5" href="{% url 'display_blog' blog.slug %}">{{blog.title}}</a>
                             <p>{{blog.content|striptags|truncatewords:30}}</p>
+                            <form action="{% url 'update_blog' blog.id %}">
+                                <button class='btn' type='submit'>
+                                    <i class="material-icons" style="font-size:20px">edit</i>
+                                </button>
+                            </form>
        
                         </div>
                         <div class="blog_img ms-3" style="width: 16rem;height: 10rem;">
                             <img src="{{blog.blog_image.url}}" class="w-100 h-100" alt="">
                         </div>
+       
                     </div>
                     {% endfor %}
                 </div>

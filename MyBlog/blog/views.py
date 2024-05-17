@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView,DetailView,ListView,TemplateView
+from django.views.generic import CreateView,DetailView,ListView,TemplateView,UpdateView
 from .forms import BlogForm
 from .models import Blog,Categories
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -50,6 +50,15 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         
 
         return super().form_valid(form)
+
+
+
+class UpdateBlogView(UpdateView):
+    model = Blog
+    template_name = 'createBlog.html'
+    fields = ['content','title']
+   
+    
 
 class DisplayBlog(DetailView):
     template_name = 'displayBlog.html'

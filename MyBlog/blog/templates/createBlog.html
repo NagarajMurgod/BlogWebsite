@@ -52,16 +52,14 @@
 
 
 <div class="blogEditorContainer">
-
-
     <div class="blog_editor_form my-5">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.media}}
+
             <div class="mb-4">
                 <label for="title" class="form-label fs-5 fw-bold" style="color: grey;">Blog Title:</label>
-                <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
-                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                <input value="{{form.title.value}}" type="text" name="title" class="form-control" id="title"  aria-describedby="emailHelp">
             </div>
             <div class="input-group mb-4 d-flex flex-column ">
                 <label for="title" class="form-label fs-5 fw-bold" style="color: grey;">Blog image:</label>
@@ -74,7 +72,8 @@
             </div>
 
             <div class="blogeditor my-4">
-                {{form.as_p}}
+                
+                {{form.content}}
             </div>
 
             <button type="submit" class="btn btn-dark fw-bold mt-2">Create Blog</button>
